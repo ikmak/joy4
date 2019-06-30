@@ -641,6 +641,8 @@ func (self *Client) Describe() (streams []sdp.Media, err error) {
 		return
 	}
 
+	self.requestUri = strings.TrimRight(res.Headers.Get("Content-Base"), "/")
+
 	body := string(res.Body)
 
 	if self.DebugRtsp {
