@@ -197,6 +197,16 @@ func (self *Client) SendRtpKeepalive() (err error) {
 			if err = self.WriteRequest(req); err != nil {
 				return
 			}
+
+			if res, err := self.ReadResponse(); err != nil {
+				return
+			} else {
+				body := string(res.Body)
+
+				if self.DebugRtsp {
+					fmt.Println("<", body)
+				}
+			}
 		}
 	}
 	return
